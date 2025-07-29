@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories List
+{% endblock %}
+{% block body %}
+
+
+	<div class="container">
+		<div class="row my-5">
+			<div class="card p-4">
+				<h1>Categories List</h1>
+				{% for message in app.flashes('messages')%}
+					<div class="alert alert-success">
+						{{message}}
+					</div>
+				{% endfor %}
+				<table class="table">
+					<thead>
+						<tr class="">
+							<th scope="col">#</th>
+							<th scope="col">Category Name</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for category in categories %}
+							<tr>
+								<th scope="row">{{category.id}}</th>
+								<td class="align-middle">{{category.name}}</td>
+								<td>
+									<a href="{{path('app_category_update', {'id': category.id})}}" class="btn btn-outline-primary">Edit</a>
+									<a href="{{path('app_category_delete', {'id': category.id})}}" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			{# <div class="border-top border-2 border-light"></div> #}
+			<a href="{{path('app_category_add')}}" class="btn btn-dark mt-3 col-3">Add New Category</a>
+		</div>
+
+	</div>
+{% endblock %}
