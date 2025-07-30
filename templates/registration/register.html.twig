@@ -5,18 +5,23 @@
 
 {% block body %}
 	<div class="container containerForm">
-		<div class="card p-5 col-6">
+		<div class="card p-5 col-6 shadow-lg">
+
 			<h1>Register</h1>
 			{{ form_errors(registrationForm) }}
 			{{ form_start(registrationForm) }}
-			{{csrf_token('intention') }}
+			{# {{csrf_token('intention') }} #}
 			{{ form_widget(registrationForm.email,{ 'attr': {'class': 'form-control', "placeholder": "Email" } }) }}
 			{{ form_widget(registrationForm.first_name,{ 'attr': {'class': 'form-control', "placeholder": "First Name"}  }) }}
 			{{ form_widget(registrationForm.last_name,{ 'attr': {'class': 'form-control', "placeholder": "Last Name" } }) }}
 			{# {{ form_row(registrationForm.password)  }} #}
 			{{ form_widget(registrationForm.plainPassword,{ 'attr': {'class': 'form-control', "placeholder": "Password" }, "label": "Password" }) }}
 			{{ form_row(registrationForm.agreeTerms,{ 'attr': {'class': 'checkbox'}})  }}
-			<button type="submit" class="btn btn-lg btn-dark">Register</button>
+			<button type="submit" class="btn btn-lg btn-dark my-3">Register</button>
+			<p class="text-center">You have already un account?
+				<a href="{{ path('app_login') }}" class="text-center">Log in</a>
+			</p>
+
 			{{ form_end(registrationForm) }}
 		</div>
 	</div>

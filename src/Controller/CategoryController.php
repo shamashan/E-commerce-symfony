@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
+    #[Route('/admin/category', name: 'app_category')]
     public function index(CategoryRepository $repo): Response
     {
         $categories = $repo->findAll();
@@ -32,7 +32,7 @@ final class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($category);
             $entityManager->flush();
-            $this->addFlash('messages', 'The category was added successfully!!');
+            $this->addFlash('success', 'The category was added successfully!!');
             return $this->redirectToRoute('app_category');
         }
         return $this->render('category/newCategory.html.twig', [
@@ -51,7 +51,7 @@ final class CategoryController extends AbstractController
             // $entityManager->persist($category);
             $entityManager->flush();
 
-            $this->addFlash('messages', 'The category was updated successfully!');
+            $this->addFlash('success', 'The category was updated successfully!');
             return $this->redirectToRoute('app_category');
         }
         return $this->render('category/updateCategory.html.twig', [
@@ -67,7 +67,7 @@ final class CategoryController extends AbstractController
         // $category = $entityManager->getRepository(Category::class)->find($id);
         $entityManager->remove($category);
         $entityManager->flush();
-        $this->addFlash("messages", 'The category was deleted!');
+        $this->addFlash("success", 'The category was deleted!');
         return $this->redirectToRoute("app_category");
     }
 }
