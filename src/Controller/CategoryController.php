@@ -23,6 +23,7 @@ final class CategoryController extends AbstractController
         ]);
     }
 
+    #region Add
     #[Route('/category/add', name: 'app_category_add')]
     public function addCategory(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -39,8 +40,9 @@ final class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    #endregion
 
-
+    #region Edit
     #[Route('/category/update/{id}', name: 'app_category_update')]
     public function editCategory(EntityManagerInterface $entityManager, Request $request, Category $category): Response
     {
@@ -58,9 +60,9 @@ final class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    #endregion
 
-
-
+    #region Delete
     #[Route('/category/delete/{id}', name: 'app_category_delete')]
     public function deleteCategory(EntityManagerInterface $entityManager, $id, Request $request, Category $category): Response
     {
@@ -70,4 +72,5 @@ final class CategoryController extends AbstractController
         $this->addFlash("success", 'The category was deleted!');
         return $this->redirectToRoute("app_category");
     }
+    #endregion
 }

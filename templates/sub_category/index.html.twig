@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SubCategories List
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row my-5">
+			<div class="card p-4">
+				<h1>SubCategories List</h1>
+				{% include "layouts/flash_message.html.twig" %}
+				<table class="table">
+					<thead>
+						<tr>
+							{# <th>Id</th> #}
+							<th>Sub Category</th>
+							<th>Category</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for sub_category in sub_categories %}
+							<tr>
+								{# <td>{{ sub_category.id }}</td> #}
+								<td>{{ sub_category.name }}</td>
+								<td>{{ sub_category.category.name }}</td>
+								<td>
+									<a href="{{ path('app_sub_category_show', {'id': sub_category.id}) }}" class="btn btn-outline-primary">Show</a>
+
+									<a href="{{ path('app_sub_category_edit', {'id': sub_category.id}) }}" class="btn btn-dark">Edit</a>
+
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="3">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<a href="{{ path('app_sub_category_new') }}" class=" btn btn-dark">Create new</a>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

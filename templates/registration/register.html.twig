@@ -2,11 +2,9 @@
 
 {% block title %}Register
 {% endblock %}
-
 {% block body %}
 	<div class="container containerForm">
 		<div class="card p-5 col-6 shadow-lg">
-
 			<h1>Register</h1>
 			{{ form_errors(registrationForm) }}
 			{{ form_start(registrationForm) }}
@@ -21,7 +19,6 @@
 			<p class="text-center">You have already un account?
 				<a href="{{ path('app_login') }}" class="text-center">Log in</a>
 			</p>
-
 			{{ form_end(registrationForm) }}
 		</div>
 	</div>

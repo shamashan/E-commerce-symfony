@@ -34,7 +34,7 @@ final class UserController extends AbstractController
     public function handleRoleEditor(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $roles = $user->getRoles();
-        // var_dump($roles);
+        // dd($roles);
         if (in_array("ROLE_EDITOR", $roles)) {
             $roles = [];
         } else {
@@ -46,4 +46,26 @@ final class UserController extends AbstractController
         $this->addFlash("success", 'The user state was changed successfully!');
         return $this->redirectToRoute("app_user");
     }
+
+
+
+    //     #[Route('/admin/user/{id}/handleRole/{role}', name: 'app_user_handleRole')]
+    //     public function handleRoleEditor(Request $request, $role, User $user, EntityManagerInterface $entityManager): Response
+    //     {
+    //         $roles = $user->getRoles();
+    //         // dd($roles);
+    //         $rolesOptions = ["ADMIN", "USER", "EDITOR"];
+    //         if (in_array($role, $rolesOptions)) {
+    //             if (in_array("ROLE_" . $role, $roles)) {
+    //                 $roles = array_;
+    //             } else {
+    //                 $roles = array_merge($roles, ["ROLE_EDITOR", "ROLE_USER"]);
+    //             }
+    //         }
+    //         $user->setRoles($roles);
+    //         $entityManager->flush();
+
+    //         $this->addFlash("success", 'The user state was changed successfully!');
+    //         return $this->redirectToRoute("app_user");
+    //     }
 }

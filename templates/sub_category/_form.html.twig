@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+{# <label for="">Name of sub category</label> #}
+{{ form_widget(form.name,{attr: {"class": "form-control","placeholder": "Name of sub category"}})   }}
+{# <label for="">Category</label> #}
+{{ form_widget(form.category,{attr: {"class": "form-control","placeholder":  "Category"}})    }}
+<button class="btn btn-dark">{{ button_label|default('Add') }}</button>
+{{ form_end(form) }}
