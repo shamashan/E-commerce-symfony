@@ -18,3 +18,9 @@
 h1 {
     margin: 20px 0;
 }
+
+.imgProduct {
+    object-fit: cover;
+    height: 250px;
+    /* max-height: 30%; */
+}
