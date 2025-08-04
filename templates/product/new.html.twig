@@ -8,9 +8,7 @@
 		<div class="card p-4 col-6">
 
 			<h1>Add Product</h1>
-
-			{{ include('product/_form.html.twig') }}
-
+			{{ include('product/_form.html.twig', {'button_label': 'Add'}) }}
 			<a href="{{ path('app_product_index') }}">back to list</a>
 		</div>
 	</div>

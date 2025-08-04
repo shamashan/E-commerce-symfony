@@ -21,7 +21,7 @@ class AddProductHistory
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $created_at = null;
 
     public function getId(): ?int

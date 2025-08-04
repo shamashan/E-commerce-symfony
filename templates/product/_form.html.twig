@@ -3,9 +3,11 @@
 {{ form_widget(form.description, {"attr": {"class": "form form-control", "placeholder": "Product description"}}) }}
 {{ form_label(form.price)}}
 {{ form_widget(form.price, {"attr": {"class": "form form-control", "placeholder": "Product price"}}) }}
-{{ form_label(form.stock)}}
-{{ form_widget(form.stock, {"attr": {"class": "form form-control", "placeholder": "Product stock"}})  }}
-{{ form_widget(form.subCategory, {"attr": {"class": "form form-control", "placeholder": "Product subCategory"}}) }}
+{% if button_label != "Update" %}
+	{{ form_label(form.stock)}}
+	{{ form_widget(form.stock, {"attr": {"class": "form form-control", "placeholder": "Product stock"}})}}
+{% endif %}
+{{ form_widget(form.subCategory, {"attr": {"class": "form form-control", "placeholder": "Product subCategory"}})}}
 {{ form_widget(form.image, {"attr": {"class": "form form-control", "placeholder": "Product image"}}) }}
-<button class="btn btn-dark">{{ button_label|default('Add') }}</button>
+<button class="btn btn-dark col-12 mb-2">{{ button_label|default('Add') }}</button>
 {{ form_end(form) }}

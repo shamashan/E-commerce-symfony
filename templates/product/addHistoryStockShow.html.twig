@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row my-5">
+			<div class="card p-4">
+				<h1>Products Stock Movement</h1>
+				{% include "layouts/flash_message.html.twig" %}
+
+				<table class="table">
+					<tr>
+						<th>Id</th>
+						<th>Quantity</th>
+						<th>Created At</th>
+					</tr>
+					{% for productHistory in productsHistory %}
+						{# {%  set total = total + productHistory.quantity %} #}
+
+						<tr>
+							<td>{{ productHistory.id }}</td>
+							<td>{{ productHistory.quantity }}</td>
+							<td>{{ productHistory.createdAt|date('d-m-Y H:i:s', "Europe/Paris") }}</td>
+						</tr>
+					{% endfor %}
+
+					<tfoot>
+						<tr>
+							<td colspan="3">Total</td>
+							{# <td>{{ total  }}</td> #}
+
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add Stock
+{% block title %}Show Stock
 {% endblock %}
 
 {% block body %}
@@ -13,7 +13,6 @@
 			{{ form_row(form.quantity, {"attr" : {"class" : "form-control mb-3"}}) }}
 			<input type="submit" class="btn btn-success btn-block" value="Add Stock">
 			{{ form_end(form)  }}
-
 		</div>
 	</div>
 {% endblock %}
