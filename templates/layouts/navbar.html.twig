@@ -15,17 +15,16 @@
 							Categories
 						</a>
 						<ul class="dropdown-menu">
+
 							{% for category in categories %}
 								<li>
-									<a class="dropdown-item categoryTitle" href="{{ path('app_category', {'id': category.id}) }}">{{ category.name }}</a>
+									<a class="dropdown-item categoryTitle" href="{{ path('app_home_category_filter', {'id': category.id}) }}">{{ category.name }}</a>
 								</li>
-								{% if categories.subCategories is defined %}
-									{% for subCategory in categories.subCategories %}
-										<li>
-											<a class="dropdown-item" href="{{ path('app_product_filter', {'id': subCategory.id}) }}">{{ subCategory.name }}</a>
-										</li>
-									{% endfor %}
-								{% endif %}
+								{% for subCategory in category.subCategories %}
+									<li>
+										<a class="dropdown-item" href="{{ path('app_home_product_filter', {'id': subCategory.id}) }}">{{ subCategory.name }}</a>
+									</li>
+								{% endfor %}
 								<li>
 									<hr class="dropdown-divider"></li>
 							{% endfor %}
@@ -79,16 +78,22 @@
 				</ul>
 			</li>
 		{% endif %}
-		{% if not is_granted("ROLE_USER")  %}
-			<li class="nav-item">
-				<a class="nav-link" href="{{path('app_login')}}">Login</a>
-			</li>
-		{% else %}
+		{% if app.user  %}
 			<li class="nav-item">
 				<a class="nav-link" href="{{path('app_logout')}}">Logout</a>
 			</li>
 		{% endif %}
 	</ul>
+	{% if app.user == false %}
+		<li class="nav-item">
+			<a class="btn btn-primary" href="{{path('app_login')}}">
+				Log in</a>
+		</li>
+		<li class="nav-item">
+			<a class="btn btn-outline-light" href="{{path('app_register')}}">
+				Register</a>
+		</li>
+	{% endif %}
 </div>
 <div>
 	<form class="d-flex"><input class="form-control me-2 my-0" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-light" type="submit">Search</button>

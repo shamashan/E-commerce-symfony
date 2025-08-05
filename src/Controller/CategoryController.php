@@ -25,7 +25,7 @@ final class CategoryController extends AbstractController
 
     #region Add
     #[Route('/category/add', name: 'app_category_add')]
-    public function addCategory(EntityManagerInterface $entityManager, Request $request): Response
+    public function addCategory(EntityManagerInterface $entityManager, Request $request, CategoryRepository $categoryRepo): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -37,14 +37,15 @@ final class CategoryController extends AbstractController
             return $this->redirectToRoute('app_category');
         }
         return $this->render('category/newCategory.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            "categories" => $categoryRepo->findAll(),
         ]);
     }
     #endregion
 
     #region Edit
     #[Route('/category/update/{id}', name: 'app_category_update')]
-    public function editCategory(EntityManagerInterface $entityManager, Request $request, Category $category): Response
+    public function editCategory(EntityManagerInterface $entityManager, Request $request, Category $category, CategoryRepository $categoryRepo): Response
     {
         // $category = $entityManager->getRepository(Category::class)->find($id);
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -57,7 +58,9 @@ final class CategoryController extends AbstractController
             return $this->redirectToRoute('app_category');
         }
         return $this->render('category/updateCategory.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            "categories" => $categoryRepo->findAll(),
+
         ]);
     }
     #endregion

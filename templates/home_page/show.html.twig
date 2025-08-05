@@ -6,7 +6,8 @@
 {% block body %}
 	<div class="container containerForm">
 		<div class="card p-4 col-6">
-			<h1>Product Details</h1>
+
+			<h1>Product</h1>
 			<table class="table">
 				<tbody>
 					<tr>
@@ -29,9 +30,14 @@
 						<th>Stock</th>
 						<td>{{ product.stock }}</td>
 					</tr>
+
 				</tbody>
 			</table>
-			<a href="{{ path('app_home_page') }}">back to list</a>
+			<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-dark mb-2">Edit</a>
+			<a href="{{ path('app_product_stock_add_history', {'id': product.id}) }}" class="btn btn-outline-primary mb-2">Show Stock History</a>
+			{{ include('product/_delete_form.html.twig') }}
+
+			<a href="{{ path('app_product_index') }}">back to list</a>
 		</div>
 	</div>
 {% endblock %}
