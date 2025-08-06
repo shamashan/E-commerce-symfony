@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_widget(form.name, {"attr": {"class": "form form-control", "placeholder": "City Name"}}) }}
+{{ form_widget(form.shippingCost, {"attr": {"class": "form form-control", "placeholder": "Shipping Cost"}}) }}
+<button class="btn btn-dark col-12 mb-2">{{ button_label|default('Add') }}</button>
+
+{{ form_end(form) }}

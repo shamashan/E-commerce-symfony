@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New City
+{% endblock %}
+
+{% block body %}
+	<div class="container containerForm">
+		<div class="card p-4 col-6">
+			<h1>Add new City</h1>
+
+			{{ include('city/_form.html.twig') }}
+
+			<a href="{{ path('app_city_index') }}">back to list</a>
+		</div>
+	</div>
+{% endblock %}
