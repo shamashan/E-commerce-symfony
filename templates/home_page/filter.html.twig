@@ -17,7 +17,7 @@
 							</a>
 							<p class="card-text">{{product.description|slice(0.60)}}</p>
 							<p class="card-text">{{product.price}}$</p>
-							<a href="" class="btn btn-outline-success">Add to cart</a>
+							<a href="{{path('app_cart_new', {'id':product.id})}}" class="btn btn-outline-success">Add to cart</a>
 							<p class="card-text">
 								<small class="text-muted">Last updated 3 mins ago</small>
 							</p>
