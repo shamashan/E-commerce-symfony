@@ -5,7 +5,6 @@
 
 {% block body %}
 	<div class="container">
-
 		<div class="row my-5">
 			<div class="card p-4 mb-3">
 				<h1 class="my-4">New Order</h1>
@@ -15,27 +14,59 @@
 				{{ form_widget(form.phone, {"attr": {"class": "form form-control", "placeholder": "Phone"}}) }}
 				{{ form_widget(form.address, {"attr": {"class": "form form-control", "placeholder": "Address"}}) }}
 				{{ form_widget(form.city, {"attr": {"class": "form form-control", "placeholder": "City"}}) }}
-
-
 				<input type="submit" value="Add order" class="btn btn-dark col-12 mb-4">
 				{{form_end(form)}}
 			</div>
 			<div class="card p-4">
-
-				<span class="mb-2">Total to pay:
+				<span class="mb-2">Total Price:
 				</span>
-				<h3>{{total}}$</h3>
+				<h3 id="card_Price">{{total}}$</h3>
 				<span>Fees of delivery</span>
-			</div>
+				<h3>
+					<span id="shippingCost"></span>$
+				</h3>
+				<span>Total to Pay:</span>
+				<h3>
+					<span class="total-price"></span>$
+				</h3>
 
+			</div>
 		</div>
 	</div>
 	 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<!-- parse-ignore-start -->
+                  <script>
+    $(document).ready(function () {
+        const citySelector = $('#order_city');
+        const cityValue = citySelector.val();
+        const url = `http://127.0.0.1:8000/city/${cityValue}/shipping/cost`;
+        function ajaxRequest(url) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (response) {
+                    const newResponse = JSON.parse(response)
+                    if (parseInt(newResponse.status) == 200) {
+                        console.log(newResponse.status)
+                        $('#shippingCost').text(newResponse.content)
+						const cardPrice = parseInt($('#card_Price').text())
+						const shippingCost = parseInt($('#shippingCost').text())
+						$(".total-price").text(cardPrice+shippingCost)
+                    }
+                },
+                error: function (xhr, status, error) { }
+            })
+        }
+        ajaxRequest(url)
 
-	 <script>
-					$(document).ready(function(){
-			const citySelector = $('#order_city');
-			const cityValue = citySelector.val();
-		 })
-										 </script>
-{% endblock %}
+        citySelector.on("change", function () {
+            const urlUpdate = `http://127.0.0.1:8000/city/${$(this).val()}/shipping/cost`
+            ajaxRequest(urlUpdate)
+        })
+    })
+</script>
+
+	<!-- parse-ignore-end -->
+
+
+</script>{% endblock %}
