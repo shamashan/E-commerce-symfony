@@ -14,7 +14,9 @@
 				{{ form_widget(form.phone, {"attr": {"class": "form form-control", "placeholder": "Phone"}}) }}
 				{{ form_widget(form.address, {"attr": {"class": "form form-control", "placeholder": "Address"}}) }}
 				{{ form_widget(form.city, {"attr": {"class": "form form-control", "placeholder": "City"}}) }}
-				<input type="submit" value="Add order" class="btn btn-dark col-12 mb-4">
+				{{ form_label(form.payOnDelivery) }}
+				{{ form_widget(form.payOnDelivery, {"attr": {"class": "checkbox", "placeholder": "Pay on Del"}}) }}
+				<input type="submit" value="Add order" class="btn btn-dark col-12 my-4">
 				{{form_end(form)}}
 			</div>
 			<div class="card p-4">
@@ -29,13 +31,12 @@
 				<h3>
 					<span class="total-price"></span>$
 				</h3>
-
 			</div>
 		</div>
 	</div>
 	 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<!-- parse-ignore-start -->
-                  <script>
+                                       <script>
     $(document).ready(function () {
         const citySelector = $('#order_city');
         const cityValue = citySelector.val();

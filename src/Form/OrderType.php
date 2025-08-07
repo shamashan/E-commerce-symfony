@@ -25,6 +25,7 @@ class OrderType extends AbstractType
                 'class' => City::class,
                 'choice_label' => 'name',
             ])
+            ->add('payOnDelivery', null, ['label' => 'Pay on delivery'])
         ;
     }
 

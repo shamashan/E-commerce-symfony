@@ -25,7 +25,6 @@
 						<td class="fw-bold">{{item.product.price}}$</td>
 						<td>{{item.quantity}}</td>
 						<td class="fw-bold">{{item.product.price * item.quantity }}$</td>
-
 						<td>
 							<a href="{{ path('app_cart_item_delete', { id: item.product.id }) }}" class="btn btn-danger">Remove</a>
 						</td>
@@ -41,12 +40,11 @@
 			<h2>Total:
 				{{total}}$</h2>
 			<div class="row">
-				<a href="" class="btn btn-dark mb-3" data-turbo="false">Validate Cart</a>
+				<a href="{{path("app_order")}}" class="btn btn-dark mb-3" data-turbo="false">Validate Cart</a>
 				<a href="{{ path('app_cart_delete') }}" class="btn btn-outline-danger">Delete Cart</a>
 			</div>
 		{% else %}
 			<h2>Total: 0$</h2>
 		{% endif %}
 	</div>
-
 </div>{% endblock %}
